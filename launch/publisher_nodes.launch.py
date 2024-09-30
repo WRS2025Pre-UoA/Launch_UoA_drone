@@ -42,6 +42,7 @@ def generate_launch_description():
             executable='drone_distribute_image',
             name='drone_distribute_image',
             namespace=namespace,
+            parameters=[{"target_dir":"tmp_image/"}], # 参照するディレクトリ
         ),
 
         Node(
