@@ -64,14 +64,16 @@ def generate_launch_description():
             package='photo',
             executable='photo_sub_pub',
             name='photo',
-            remappings=[('input_photo_image','/drone/situation_image')]
+            namespace=namespace,
+            remappings=[('input_photo_image', 'situation_image')]
         ),
 
         Node(
             package='bulb',
             executable='bulb_param',
             name='bulb',
-            remappings=[('input_bulb_image','/drone/bulb_image')]
+            namespace=namespace,
+            remappings=[('input_bulb_image', 'bulb_image')]
         )
 
     ]
