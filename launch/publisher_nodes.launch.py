@@ -29,20 +29,20 @@ def generate_launch_description():
             ]
         ),
 
-        Node(
-            package='rust',
-            executable='rust_subscriber',
-            name='rust',
-            namespace=namespace,
-            remappings=[('image_topic', 'rust_image')]
-        ),
+        # Node(
+        #     package='rust',
+        #     executable='rust_subscriber',
+        #     name='rust',
+        #     namespace=namespace,
+        #     remappings=[('image_topic', 'rust_image')]
+        # ),
 
         Node(
             package='drone_distribute_image',
             executable='drone_distribute_image',
             name='drone_distribute_image',
             namespace=namespace,
-            parameters=[{"target_dir":"tmp_image/"}], # 参照するディレクトリ
+            parameters=[{"target_dir":"/home/ros/ros2_ws/drone_data"}], # 参照するディレクトリ
         ),
 
         Node(
@@ -59,7 +59,21 @@ def generate_launch_description():
             namespace=namespace,
             remappings=[('send_image', 'send_topic')],
             parameters=[{"host": "", "robot_id": ""}] # サーバでの値を設定する
+        ),
+        Node(
+            package='photo',
+            executable='photo_sub_pub',
+            name='photo',
+            remappings=[('input_photo_image','/drone/situation_image')]
+        ),
+
+        Node(
+            package='bulb',
+            executable='bulb_param',
+            name='bulb',
+            remappings=[('input_bulb_image','/drone/bulb_image')]
         )
+
     ]
 
     # LaunchDescriptionに、起動したいノードを追加する
