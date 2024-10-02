@@ -29,13 +29,13 @@ def generate_launch_description():
             ]
         ),
 
-        # Node(
-        #     package='rust',
-        #     executable='rust_subscriber',
-        #     name='rust',
-        #     namespace=namespace,
-        #     remappings=[('image_topic', 'rust_image')]
-        # ),
+        Node(
+            package='manual_package',
+            executable='manual_publisher',
+            name='qr_manual',
+            namespace=namespace,
+            remappings=[('manual_input_qr', 'qr_image_manual'),('text_topic','qr_result_value')]
+        ),
 
         Node(
             package='drone_distribute_image',
